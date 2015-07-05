@@ -1,4 +1,4 @@
-appengine-angular-python
+POKEPLOUD
 ========================
 
-AppEngine skeleton with python and angular
+Application de Tirage de Dresseur
