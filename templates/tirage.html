@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 text-left">
+            <form name="montirage" class="form-inline" novalidate>
+                <div class="form-group">
+                    <label for="pseudo">Nom Tirage :</label>
+                    <div>
+                        <input ng-model="pseudo" ng-pattern="/^[a-zA-Z0-9]+$/" type="text" name="pseudo" class="form-control" id="pseudo" required>
+                        <span style="color:red" ng-show="montirage.pseudo.$dirty && montirage.pseudo.$invalid">
+                            <span ng-show="montirage.pseudo.$error.required">Le nom du Tirage est requis</span>
+                        </span>
+                        <span style="color:red" ng-show="montirage.pseudo.$error.pattern">
+                            <span ng-show="montirage.pseudo.$error.pattern">Caractères spéciaux interdit</span>
+                        </span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-default text-left" ng-disabled="montirage.pseudo.$dirty && montirage.pseudo.$invalid" ng-click="addtirage()">Créer Tirage Dresseur</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-left">
+            <div ng-if="tiragevalide == 'ok'">
+                <p>
+                    Tirage Ajouté
+                </p>
+            </div>
+            <div ng-if="tiragevalide == 'ko'">
+                <p>
+                    Le tirage existe déjà
+                </p>
+            </div>
+            <div ng-if="tiragevalide == 'none'">
+                <p>
+                    Le champ n'a pas été rempli
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 20px; padding-bottom: 10px">
+        <div class="col-md-12 text-left">
+            <button type="submit" class="btn btn-default" ng-click="refreshtirage()">Rafraichir la Liste</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-left">
+            <div class="table-responsive" style="padding-top: 20px">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nom Tirage</th>
+                        <th>Date Création</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="tirage in listetirage | filter:query" class="table-bordered" style="padding: 5px;background-color: cadetblue;font-size: 16px">
+                        <td style="padding-right: 10px">
+                            <a href=/#listeca/{{tirage.nomtirage}}>{{tirage.nomtirage}}</a>
+                        </td>
+                        <td>
+                            {{tirage.datecreation}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

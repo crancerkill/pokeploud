@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="row" style="padding-top: 20px">
+        <div class="col-md-12 text-left">
+            <form name ="mondresseur" class="form-inline" novalidate>
+                <div class="form-group">
+                    <label for="nomig">Nom IG :</label>
+                    <input ng-model="nomig" ng-pattern="/^[a-zA-Z0-9]+$/" type="text" name="nomig" class="form-control" id="nomig" required>
+                    <span style="color:red" ng-show="mondresseur.nomig.$dirty && mondresseur.nomig.$invalid">
+                        <span ng-show="mondresseur.nomig.$error.required">Le nom IG est requis</span>
+                    </span>
+                    <span style="color:red" ng-show="mondresseur.nomig.$error.pattern">
+                        <span ng-show="mondresseur.nomig.$error.pattern">Caractères spéciaux interdit</span>
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="codeami">Code Ami :</label>
+                    <input ng-model="codeami" ng-pattern="/^([0-9]{4}[-. ]){2}[0-9]{4}$/" type="text" name="codeami" class="form-control" id="codeami" required>
+                    <span style="color:red" ng-show="mondresseur.codeami.$dirty && mondresseur.codeami.$invalid">
+                        <span ng-show="mondresseur.codeami.$error.required">Le code ami est requis</span>
+                    </span>
+                    <span style="color:red" ng-show="mondresseur.codeami.$error.pattern">
+                        <span ng-show="mondresseur.codeami.$error.pattern">Le code ami doit être du type XXXX-XXXX-XXXX</span>
+                    </span>
+                </div>
+                <button type="submit" class="btn btn-default" ng-disabled="mondresseur.nomig.$dirty && mondresseur.nomig.$invalid || mondresseur.codeami.$dirty && mondresseur.codeami.$invalid" ng-click="addDresseur()">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 text-left">
+        <div ng-if="dresseurvalide == 'ok'">
+            <p>
+                Dresseur Ajouté
+            </p>
+        </div>
+        <div ng-if="dresseurvalide == 'ko'">
+            <p>
+                Les champs n'ont pas été rempli
+            </p>
+        </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 20px">
+        <div class="col-md-12 text-left">
+            <div class="col-md-2">
+                <div>
+                    Recherche : <input ng-model="query">
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <input value="Tirage Dresseur" class="btn btn-default" style="margin-top: 10px; margin-left: 10px" type="button" ng-click="callService()" />
+            </div>
+
+            <div class="col-md-8">
+                <p style="margin-top: 15px">{{tirage.nomig}} {{tirage.codeami}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding-top: 20px; padding-bottom: 10px">
+        <div class="col-md-12 text-left">
+            <button type="submit" class="btn btn-default" ng-click="refreshdresseur()">Rafraichir</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 text-left">
+            <div class="table-responsive" style="padding-top: 20px">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Nom IG</th>
+                        <th>Code Ami</th>
+                        <!-- A remettre pour les vérifs de requêtes <th>Tirage</th> -->
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="dresseur in equipe | filter:query" class="table-bordered" style="padding: 5px;background-color: cadetblue;font-size: 16px">
+                        <td style="padding-right: 10px">{{dresseur.nomig}}</td>
+                        <td>{{dresseur.codeami}}</td>
+                        <!-- A remettre pour les vérifs de requêtes <td>{{dresseur.tirage.nomtirage}}</td> -->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

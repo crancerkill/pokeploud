@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html class="ng-app:app" id="ng-app" ng-app="app" xmlns:ng="http://angularjs.org">
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <title>Tirage Dresseur</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/bootstrap-theme.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+
+  <script src="/js/libs/angular.min.js"></script>
+  <script src="/js/libs/angular-route.min.js"></script>
+  <script src="/js/libs/angular-resource.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/tirage_ctrl.js"></script>
+  <script src="/js/dresseur_ctrl.js"></script>
+  <script src="/js/connexion_ctrl.js"></script>
+</head>
+<body class="container">
+<div class="col-md-12 text-center">
+    <strong>
+        <p style="font-family: Courier New; font-size: 50px">
+            Tirage du CPM
+        </p>
+    </strong>
+</div>
+<div class="col-md-12 text-center" ng-view></div>
+</body>
+</html>
