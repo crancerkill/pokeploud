@@ -55,6 +55,14 @@ app.factory('ServiceConnexion', function ($resource)
         });
 });
 
+app.factory('ServiceUpload', function ($resource)
+{
+    return $resource('/upload/:key', {},
+        {
+            upload: {method: 'POST', params: {key: 'upload'}, isArray: false}
+        });
+});
+
 
 
 

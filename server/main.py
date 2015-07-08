@@ -6,6 +6,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from server.DresseurHandler import DresseurHandler
 from server.TirageHandler import TirageHandler
 from server.AuthHandler import AuthHandler
+from server.UploadHandler import UploadHandler
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(os.path.dirname(__file__))),
@@ -27,6 +28,7 @@ application = webapp2.WSGIApplication([
     ('/dresseur.*', DresseurHandler),
     ('/tirage.*', TirageHandler),
     ('/service/connexion.*', AuthHandler),
+    ('/upload.*', UploadHandler),
     ('/.*', MainHandler),
 ], config=config, debug=False)
 
